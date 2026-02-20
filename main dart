@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+import 'features/products/home_screen.dart';
+
+void main() {
+  runApp(SevazMartApp());
+}
+
+class SevazMartApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sevaz Mart',
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: HomeScreen(),
+    );
+  }
+}
