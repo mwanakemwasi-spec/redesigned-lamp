@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import '../../core/api.dart';
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  load() async {
+    final data = await Api.getProducts();
+    setState(() => products = data);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Sevaz Mart")),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (_, i) {
+          final p = products[i];
+          return ListTile(
+            title: Text(p["name"]),
+            subtitle: Text("KES ${p["price"]}"),
+          );
+        },
+      ),
+    );
+  }
+}
